@@ -8,10 +8,11 @@
     in
     {
       packages.${system} = {
-        envycontrol = pkgs.python3Packages.buildPythonPackage {
+        envycontrol = pkgs.python314Packages.buildPythonPackage {
           pname = "envycontrol";
           version = "3.5.2";
           src = self;
+          format = "setuptools";
         };
         default = self.packages.${system}.envycontrol;
       };
@@ -20,7 +21,7 @@
 
       devShells.default = pkgs.mkShellNoCC {
         packages = with pkgs; [
-          (python3.withPackages(ps: with ps; [ setuptools ]))
+          (python314.withPackages(ps: with ps; [ setuptools ]))
           pciutils
         ];
       };
